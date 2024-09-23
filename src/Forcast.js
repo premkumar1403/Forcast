@@ -5,7 +5,9 @@ import './weather.css'
 const Forcast = () => {
   const [data, setdata] = useState("");
   const [userdata, setuserdata] = useState("");
-
+  const datas = new Date();
+  const hour = datas.getHours()
+  const minutes = datas.getMinutes();
   const options = {
     method: "GET",
     url: "https://weatherapi-com.p.rapidapi.com/current.json",
@@ -52,7 +54,9 @@ const Forcast = () => {
               />
             </div>
             <div className="details">
-              <h1 className="location-name">{data.location.name}</h1>
+              <h1 className="location-name">
+                {data.location.name}&nbsp;&nbsp;{hour}:{minutes}
+              </h1>
               <h1 className="temperature">
                 {data.current.temp_c}
                 <span className="degree">°C</span>
@@ -78,7 +82,7 @@ const Forcast = () => {
           </div>
         </div>
       ) : (
-        <h1>Enter your city</h1>
+        <h1 style={{textAlign:"center",color:"white"}}>Enter your city</h1>
       )}
     </div>
   );
